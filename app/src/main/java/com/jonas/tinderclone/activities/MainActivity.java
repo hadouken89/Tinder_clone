@@ -3,40 +3,48 @@ package com.jonas.tinderclone;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+import com.jonas.tinderclone.adapters.CardAdapter;
+import com.jonas.tinderclone.models.CardItem;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-    private ArrayList al;
     private ArrayAdapter arrayAdapter;
+    private List<CardItem> cardItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //add the view via xml or programmatically
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        cardItemList = new ArrayList();
 
-        al = new ArrayList<String>();
-        al.add("php");
-        al.add("c");
-        al.add("python");
-        al.add("java");
+        CardItem cardItem1 = new CardItem("001", "lucas");
+        CardItem cardItem2 = new CardItem("002", "Matias");
+        CardItem cardItem3 = new CardItem("003", "Hernan");
+        CardItem cardItem4 = new CardItem("004", "Alexis");
+        CardItem cardItem5 = new CardItem("005", "Tomas");
+        CardItem cardItem6 = new CardItem("006", "Gabriel");
 
-        //choose your favorite adapter
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.item, R.id.helloText, al );
+        cardItemList.add(cardItem1);
+        cardItemList.add(cardItem2);
+        cardItemList.add(cardItem3);
+        cardItemList.add(cardItem4);
+        cardItemList.add(cardItem5);
+        cardItemList.add(cardItem6);
 
-        //set the listener and the adapter
+
+        arrayAdapter = new CardAdapter(this, R.layout.item, cardItemList );
+
+        SwipeFlingAdapterView flingContainer = findViewById(R.id.frame);
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
-               // Log.d("LIST", "removed object!");
-                al.remove(0);
+                cardItemList.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
