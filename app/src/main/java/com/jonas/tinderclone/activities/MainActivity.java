@@ -21,6 +21,11 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initProperties();
+    }
+
+    @Override
+    public void initProperties() {
         cardItemList = new ArrayList();
 
         CardItem cardItem1 = new CardItem("001", "lucas");
@@ -54,7 +59,7 @@ public class MainActivity extends BaseActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-               // Toast.makeText(MyActivity.this, "Left!", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MyActivity.this, "Left!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -79,5 +84,8 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void configureActionBar() { }
 }
 
