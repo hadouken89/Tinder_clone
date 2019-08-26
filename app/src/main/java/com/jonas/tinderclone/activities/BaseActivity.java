@@ -2,7 +2,7 @@ package com.jonas.tinderclone.activities;
 
 import android.support.v7.app.AppCompatActivity;
 
-class BaseActivity  extends AppCompatActivity {
+public abstract class  BaseActivity  extends AppCompatActivity implements IBaseActivity{
 
 
 }
