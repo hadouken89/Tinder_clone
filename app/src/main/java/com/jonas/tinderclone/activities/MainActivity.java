@@ -1,8 +1,9 @@
-package com.jonas.tinderclone;
+package com.jonas.tinderclone.activities;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
+import com.jonas.tinderclone.R;
 import com.jonas.tinderclone.adapters.CardAdapter;
 import com.jonas.tinderclone.models.CardItem;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;

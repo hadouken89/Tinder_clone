@@ -1,4 +1,4 @@
-package com.jonas.tinderclone;
+package com.jonas.tinderclone.activities;
 
 import android.support.v7.app.AppCompatActivity;
 
