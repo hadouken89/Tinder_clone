@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.jonas.tinderclone.R;
 import com.jonas.tinderclone.services.IResponseListener;
@@ -19,6 +20,8 @@ public class RegistrationActivity extends BaseActivity {
     EditText edtEmail;
     @InjectView(R.id.password)
     EditText edtPassword;
+    @InjectView(R.id.tvErrorMessage)
+    TextView tvErrorMessage;
     @InjectView(R.id.btnSubmit)
     Button btnSubmit;
 
@@ -46,19 +49,20 @@ public class RegistrationActivity extends BaseActivity {
     public void configureActionBar() {}
 
     private void registerUserByEmail() {
-        RegisterService registerService = new RegisterService();
+        RegisterService registerService = new RegisterService(RegistrationActivity.this);
         registerService.registerUserEmailAccount(edtEmail.getText().toString(), edtPassword.getText().toString(), new IResponseListener() {
             @Override
             public void onSuccess() {
                 Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                Toast.makeText(getApplicationContext(), "hay user registrado", Toast.LENGTH_LONG);
+                tvErrorMessage.setVisibility(View.GONE);
             }
 
             @Override
-            public void onFailure() {
-                Toast.makeText(getApplicationContext(), "error registrando el user", Toast.LENGTH_LONG);
+            public void onFailure(String errorMessage) {
+                tvErrorMessage.setText(errorMessage);
+                tvErrorMessage.setVisibility(View.VISIBLE);
             }
         });
     }
